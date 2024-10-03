@@ -15,11 +15,16 @@
   set_fact:
     aur_user: aur_builder
 
+- name: Create aur_builder group
+  become: true
+  group:
+    name: aur_builder
+
 - name: Creating aur_builder
   become: true
   user:
     name: "{{ aur_user }}"
-    group: wheel
+    group: aur_builder
 
 - name: Giving passwordless access to pacman
   become: true
